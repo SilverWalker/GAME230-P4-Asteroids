@@ -45,6 +45,12 @@
     <ClCompile Include="asteroid.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="bullet.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="levelHandler.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Setting.h">
@@ -60,6 +66,12 @@
       <Filter>Source Files</Filter>
     </ClInclude>
     <ClInclude Include="Asteroid.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Bullet.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="LevelHandler.h">
       <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>

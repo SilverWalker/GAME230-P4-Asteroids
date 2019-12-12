@@ -7,6 +7,8 @@
 #include "GameObject.h"
 #include "SpaceShip.h"
 #include "Asteroid.h"
+#include "Bullet.h"
+#include "LevelHandler.h"
 
 extern int WINDOW_WIDTH;
 extern int WINDOW_HEIGHT;
@@ -25,6 +27,8 @@ extern int asteroidSizes[];
 
 extern SpaceShip* player;
 extern std::vector<Asteroid*> asteroids;
+extern std::vector<Bullet*> bullets;
+extern LevelHandler* levelHandler;
 
 extern sf::Texture spaceShipTexture;
 

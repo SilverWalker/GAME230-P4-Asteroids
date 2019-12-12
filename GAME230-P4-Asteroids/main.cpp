@@ -14,6 +14,9 @@
 #include "Ui.h"
 #include "GameObject.h"
 #include "SpaceShip.h"
+#include "Asteroid.h"
+#include "Bullet.h"
+#include "LevelHandler.h"
 
 int main()
 {
@@ -21,9 +24,7 @@ int main()
 	loadAssets();
 	player = new SpaceShip({ WINDOW_WIDTH * 0.5f, WINDOW_HEIGHT * 0.5f }, 0.0f, -90.0f, 20.0f);
 	Ui ui;
-	for (int i = 0; i < 10; i++) {
-		asteroids.push_back(new Asteroid({ WINDOW_WIDTH * i * 0.1f, WINDOW_HEIGHT * i * 0.1f }, rand()%20+20.0f, rand()%360-180.0f, i%3));
-	}
+	levelHandler = new LevelHandler();
 
 
 	srand(time(NULL));
@@ -47,6 +48,7 @@ int main()
 				case 1: {
 					if (mousePos.x > WINDOW_WIDTH * 0.5 - 100 && mousePos.x < WINDOW_WIDTH * 0.5 + 100
 					&& mousePos.y> WINDOW_HEIGHT * 0.68 - 25 && mousePos.y < WINDOW_HEIGHT * 0.68 + 25) {
+						levelHandler->buildLevel(1);
 						currentState = 2;
 					}
 					if (mousePos.x > WINDOW_WIDTH * 0.5 - 100 && mousePos.x < WINDOW_WIDTH * 0.5 + 100
@@ -55,6 +57,9 @@ int main()
 					}
 				}break;
 				case 2: {
+					if (sf::Mouse::isButtonPressed(sf::Mouse::Left) && bullets.size() < 5) {
+						bullets.push_back(new Bullet({ player->position.x, player->position.y }, player->angle));
+					}
 				}break;
 				case 3: {
 					if (mousePos.x > WINDOW_WIDTH * 0.5 - 125 && mousePos.x < WINDOW_WIDTH * 0.5 + 125
@@ -70,13 +75,6 @@ int main()
 			sf::Vector2i mousePos = sf::Mouse::getPosition(window);
 			float mouseAngle = atan2(mousePos.y - player->position.y, mousePos.x - player->position.x) * 180 / 3.14f;
 			float mouseDistance = sqrt(pow(mousePos.x - player->position.x, 2) + pow(mousePos.y - player->position.y, 2));
-			std::cout << mouseAngle << " " << player->speed << std::endl;
-			/*if (int(player->angle + 360) % 360 > int(mouseAngle + 360) % 360) {
-				player->angle -= 1;
-			}
-			else if (int(player->angle + 360) % 360 < int(mouseAngle + 360) % 360) {
-				player->angle += 1;
-			}*/
 			player->angle = mouseAngle;
 			if (player->speed < 300.0f) {
 				player->speed += 0.05f;
@@ -89,12 +87,8 @@ int main()
 				ui.drawMainMenu(window);
 			}break;
 			case 2: {
-				player->update();
-				player->draw(window);
-				for (int i = 0; i < asteroids.size(); i++) {
-					asteroids.at(i)->update();
-					asteroids.at(i)->draw(window);
-				}
+				levelHandler->update();
+				levelHandler->render(window);
 				ui.drawInGameInfo(window);
 			}break;
 			case 3: {
