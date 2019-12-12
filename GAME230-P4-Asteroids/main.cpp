@@ -12,11 +12,19 @@
 
 #include "Setting.h"
 #include "Ui.h"
+#include "GameObject.h"
+#include "SpaceShip.h"
 
 int main()
 {
 	sf::RenderWindow window(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), "Asteroids");
+	loadAssets();
+	player = new SpaceShip({ WINDOW_WIDTH * 0.5f, WINDOW_HEIGHT * 0.5f }, 0.0f, -90.0f, 20.0f);
 	Ui ui;
+	for (int i = 0; i < 10; i++) {
+		asteroids.push_back(new Asteroid({ WINDOW_WIDTH * i * 0.1f, WINDOW_HEIGHT * i * 0.1f }, rand()%20+20.0f, rand()%360-180.0f, i%3));
+	}
+
 
 	srand(time(NULL));
 	while (window.isOpen())
@@ -64,6 +72,11 @@ int main()
 				ui.drawMainMenu(window);
 			}break;
 			case 2: {
+				player->draw(window);
+				for (int i = 0; i < asteroids.size(); i++) {
+					asteroids.at(i)->update();
+					asteroids.at(i)->draw(window);
+				}
 				ui.drawInGameInfo(window);
 			}break;
 			case 3: {

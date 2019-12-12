@@ -149,16 +149,25 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="asteroid.cpp" />
+    <ClCompile Include="gameObject.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="setting.cpp" />
+    <ClCompile Include="spaceShip.cpp" />
     <ClCompile Include="ui.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Asteroid.h" />
+    <ClInclude Include="GameObject.h" />
     <ClInclude Include="Setting.h" />
+    <ClInclude Include="SpaceShip.h" />
     <ClInclude Include="Ui.h" />
   </ItemGroup>
   <ItemGroup>
     <Font Include="asset\font\JustMyType-KePl.ttf" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="asset\texture\spaceShip.png" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

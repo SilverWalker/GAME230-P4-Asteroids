@@ -36,6 +36,15 @@
     <ClCompile Include="ui.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="gameObject.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="spaceShip.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="asteroid.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Setting.h">
@@ -44,10 +53,24 @@
     <ClInclude Include="Ui.h">
       <Filter>Source Files</Filter>
     </ClInclude>
+    <ClInclude Include="GameObject.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SpaceShip.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Asteroid.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Font Include="asset\font\JustMyType-KePl.ttf">
       <Filter>Resource Files\asset\font</Filter>
     </Font>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="asset\texture\spaceShip.png">
+      <Filter>Resource Files\asset\texture</Filter>
+    </Image>
   </ItemGroup>
 </Project>
