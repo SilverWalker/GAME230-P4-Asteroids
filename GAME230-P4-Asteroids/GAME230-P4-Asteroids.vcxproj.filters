@@ -13,10 +13,41 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Resource Files\asset">
+      <UniqueIdentifier>{e5c05724-68f8-4f3a-9346-568d98d30f9d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\asset\font">
+      <UniqueIdentifier>{de321b33-3d1e-4153-8c3e-f5539c0e0bce}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\asset\sound">
+      <UniqueIdentifier>{63993bdb-d19b-4383-a0dc-125dd0e837d2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\asset\texture">
+      <UniqueIdentifier>{027091c9-cc94-4d69-abfc-59bf53884e07}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="setting.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ui.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Setting.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Ui.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Font Include="asset\font\JustMyType-KePl.ttf">
+      <Filter>Resource Files\asset\font</Filter>
+    </Font>
   </ItemGroup>
 </Project>

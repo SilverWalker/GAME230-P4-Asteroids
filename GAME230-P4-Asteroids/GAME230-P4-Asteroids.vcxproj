@@ -150,6 +150,15 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="setting.cpp" />
+    <ClCompile Include="ui.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Setting.h" />
+    <ClInclude Include="Ui.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Font Include="asset\font\JustMyType-KePl.ttf" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
