@@ -66,12 +66,30 @@ int main()
 			}
 		}
 
+		if (sf::Mouse::isButtonPressed(sf::Mouse::Right) && currentState == 2) {
+			sf::Vector2i mousePos = sf::Mouse::getPosition(window);
+			float mouseAngle = atan2(mousePos.y - player->position.y, mousePos.x - player->position.x) * 180 / 3.14f;
+			float mouseDistance = sqrt(pow(mousePos.x - player->position.x, 2) + pow(mousePos.y - player->position.y, 2));
+			std::cout << mouseAngle << " " << player->speed << std::endl;
+			/*if (int(player->angle + 360) % 360 > int(mouseAngle + 360) % 360) {
+				player->angle -= 1;
+			}
+			else if (int(player->angle + 360) % 360 < int(mouseAngle + 360) % 360) {
+				player->angle += 1;
+			}*/
+			player->angle = mouseAngle;
+			if (player->speed < 300.0f) {
+				player->speed += 0.05f;
+			}
+		}
+
 		window.clear();
 		switch (currentState) {
 			case 1: {
 				ui.drawMainMenu(window);
 			}break;
 			case 2: {
+				player->update();
 				player->draw(window);
 				for (int i = 0; i < asteroids.size(); i++) {
 					asteroids.at(i)->update();
