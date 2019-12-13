@@ -57,6 +57,9 @@
     <ClCompile Include="particle.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="powerup.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Setting.h">
@@ -86,6 +89,9 @@
     <ClInclude Include="Particle.h">
       <Filter>Source Files</Filter>
     </ClInclude>
+    <ClInclude Include="Powerup.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Font Include="asset\font\JustMyType-KePl.ttf">
@@ -97,6 +103,15 @@
       <Filter>Resource Files\asset\texture</Filter>
     </Image>
     <Image Include="asset\texture\asteroid.png">
+      <Filter>Resource Files\asset\texture</Filter>
+    </Image>
+    <Image Include="asset\texture\powerup-0.png">
+      <Filter>Resource Files\asset\texture</Filter>
+    </Image>
+    <Image Include="asset\texture\powerup-1.png">
+      <Filter>Resource Files\asset\texture</Filter>
+    </Image>
+    <Image Include="asset\texture\powerup-2.png">
       <Filter>Resource Files\asset\texture</Filter>
     </Image>
   </ItemGroup>
@@ -114,6 +129,12 @@
       <Filter>Resource Files\asset\sound</Filter>
     </Media>
     <Media Include="asset\sound\nextLevel.wav">
+      <Filter>Resource Files\asset\sound</Filter>
+    </Media>
+    <Media Include="asset\sound\powerup.wav">
+      <Filter>Resource Files\asset\sound</Filter>
+    </Media>
+    <Media Include="asset\sound\shootDenied.wav">
       <Filter>Resource Files\asset\sound</Filter>
     </Media>
   </ItemGroup>

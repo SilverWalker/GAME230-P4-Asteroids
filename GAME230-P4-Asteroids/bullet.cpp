@@ -5,14 +5,14 @@
 #include "Setting.h"
 #include "Bullet.h"
 
-Bullet::Bullet(sf::Vector2f position, float angle)
+Bullet::Bullet(sf::Vector2f position, float angle, int life, int colorId)
 {
 	this->speed = 500.0f;
 	this->angle = angle;
 	this->radius = 5;
 	this->position = position;
-	this->color = sf::Color(69, 190, 255);
-	this->life = 2000;
+	this->color = bulletColors[colorId];
+	this->life = life;
 	this->type = 2;
 	this->isDead = false;
 

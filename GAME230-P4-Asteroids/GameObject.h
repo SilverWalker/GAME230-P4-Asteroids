@@ -11,7 +11,7 @@ public:
 	float radius;
 	sf::CircleShape shape;
 	sf::Color color;
-	int type; //0: space ship, 1: asteroid, 2: bullet
+	int type; //0: space ship, 1: asteroid, 2: bullet, 3: powerup
 	bool isDead;
 
 	GameObject();

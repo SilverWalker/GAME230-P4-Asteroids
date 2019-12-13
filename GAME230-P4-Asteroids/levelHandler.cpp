@@ -31,6 +31,9 @@ void LevelHandler::update()
 	for (int i = 0; i < asteroids.size(); i++) {
 		asteroids.at(i)->update();
 	}
+	for (int i = 0; i < powerups.size(); i++) {
+		powerups.at(i)->update();
+	}
 	player->update();
 	for (int i = 0; i < waves.size(); i++) {
 		waves.at(i)->update();
@@ -50,6 +53,9 @@ void LevelHandler::update()
 
 void LevelHandler::render(sf::RenderWindow& window)
 {
+	for (int i = 0; i < powerups.size(); i++) {
+		powerups.at(i)->draw(window);
+	}
 	for (int i = 0; i < bullets.size(); i++) {
 		bullets.at(i)->draw(window);
 	}
@@ -69,6 +75,7 @@ void LevelHandler::buildLevel(int level)
 {
 	asteroids.clear();
 	bullets.clear();
+	powerups.clear();
 	waves.clear();
 	particles.clear();
 	player->reset();
@@ -94,6 +101,9 @@ void LevelHandler::updateBuckets()
 	for (int i = 0; i < asteroids.size(); i++) {
 		addToBuckets(asteroids.at(i));
 	}
+	for (int i = 0; i < powerups.size(); i++) {
+		addToBuckets(powerups.at(i));
+	}
 	this->addToBuckets(player);
 	//Detect collisions in each bucket
 	for (int i = 0; i < gridBuckets.size(); i++) {
@@ -112,6 +122,12 @@ void LevelHandler::updateBuckets()
 		if (asteroids.at(i)->isDead) {
 			delete asteroids[i];
 			asteroids.erase(asteroids.begin() + i);
+		}
+	}
+	for (int i = 0; i < powerups.size(); i++) {
+		if (powerups.at(i)->isDead) {
+			delete powerups[i];
+			powerups.erase(powerups.begin() + i);
 		}
 	}
 	for (int i = 0; i < waves.size(); i++) {
@@ -170,6 +186,10 @@ void LevelHandler::detectCollisions(std::vector<GameObject*> bucket) {
 					if (obj2->type == 1) {
 						player->takeDamage();
 					}
+					if (obj2->type == 3) {
+						playSound(5);
+						bucket.at(j)->isDead = true;
+					}
 				}break;
 				case 1: {
 					if (obj2->type == 0) {
@@ -194,6 +214,12 @@ void LevelHandler::detectCollisions(std::vector<GameObject*> bucket) {
 						playSound(3);
 						bucket.at(i)->isDead = true;
 						bucket.at(j)->isDead = true;
+					}
+				}break;
+				case 3: {
+					if (obj2->type == 0) {
+						playSound(5);
+						bucket.at(i)->isDead = true;
 					}
 				}break;
 				}

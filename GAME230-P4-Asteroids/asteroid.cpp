@@ -27,6 +27,10 @@ Asteroid::~Asteroid()
 	if (this->sizeLevel > 0) {
 		asteroids.push_back(new Asteroid(this->position, rand() % 100 + 50.0f * level, this->angle - 90, this->sizeLevel - 1));
 		asteroids.push_back(new Asteroid(this->position, rand() % 100 + 50.0f * level, this->angle + 90, this->sizeLevel - 1));
+		int powerupRnd = int(rand() % 100);
+		if (powerupRnd < 20) {
+			powerups.push_back(new Powerup(this->position, int(rand() % 3)));
+		}
 	}
 }
 

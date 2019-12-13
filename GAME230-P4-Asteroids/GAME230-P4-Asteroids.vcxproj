@@ -155,6 +155,7 @@
     <ClCompile Include="levelHandler.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="particle.cpp" />
+    <ClCompile Include="powerup.cpp" />
     <ClCompile Include="setting.cpp" />
     <ClCompile Include="spaceShip.cpp" />
     <ClCompile Include="ui.cpp" />
@@ -166,6 +167,7 @@
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="LevelHandler.h" />
     <ClInclude Include="Particle.h" />
+    <ClInclude Include="Powerup.h" />
     <ClInclude Include="Setting.h" />
     <ClInclude Include="SpaceShip.h" />
     <ClInclude Include="Ui.h" />
@@ -176,13 +178,18 @@
   </ItemGroup>
   <ItemGroup>
     <Image Include="asset\texture\asteroid.png" />
+    <Image Include="asset\texture\powerup-0.png" />
+    <Image Include="asset\texture\powerup-1.png" />
+    <Image Include="asset\texture\powerup-2.png" />
     <Image Include="asset\texture\spaceShip.png" />
   </ItemGroup>
   <ItemGroup>
     <Media Include="asset\sound\destorySpaceShip.wav" />
     <Media Include="asset\sound\destroyAsteroid.wav" />
     <Media Include="asset\sound\nextLevel.wav" />
+    <Media Include="asset\sound\powerup.wav" />
     <Media Include="asset\sound\shoot.wav" />
+    <Media Include="asset\sound\shootDenied.wav" />
     <Media Include="asset\sound\thrust.wav" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

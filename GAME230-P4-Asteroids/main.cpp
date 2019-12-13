@@ -60,9 +60,20 @@ int main()
 					}
 				}break;
 				case 2: {
-					if (sf::Mouse::isButtonPressed(sf::Mouse::Left) && bullets.size() < 5) {
-						bullets.push_back(new Bullet({ player->position.x, player->position.y }, player->angle));
-						playSound(1);
+					if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
+						if (bullets.size() < 5 && player->powerupShootType == 0) {
+							bullets.push_back(new Bullet({ player->position.x, player->position.y }, player->angle, 2000, 0));
+							playSound(1);
+						}
+						else if (bullets.size() < 15 && player->powerupShootType == 2) {
+							bullets.push_back(new Bullet({ player->position.x, player->position.y }, player->angle + 30.0f, 200, 2));
+							bullets.push_back(new Bullet({ player->position.x, player->position.y }, player->angle, 200, 2));
+							bullets.push_back(new Bullet({ player->position.x, player->position.y }, player->angle - 30.0f, 200, 2));
+							playSound(1);
+						}
+						else {
+							playSound(6);
+						}
 					}
 				}break;
 				case 3: {
@@ -84,6 +95,11 @@ int main()
 			}
 			if (frameCount % 60 == 0) playSound(0);
 			particles.push_back(new Particle(player->position, 300.0f, player->angle - 180.0f + sin(frameCount) * 20));
+		}
+
+		if(sf::Mouse::isButtonPressed(sf::Mouse::Left) && currentState == 2 && player->powerupShootType==1 && frameCount % 10==0) {
+			bullets.push_back(new Bullet({ player->position.x, player->position.y }, player->angle, 100, 1));
+			playSound(1);
 		}
 
 		sf::Vector2i mousePos = sf::Mouse::getPosition(window);

@@ -16,6 +16,8 @@ SpaceShip::SpaceShip(sf::Vector2f position, float speed, float angle, float radi
 	this->isDead = false;
 	this->isInvisible = false;
 	this->invisibleTime = 0;
+	this->powerupShootType = 0;
+	this->powerupShootTime = 0;
 
 	this->shape.setRadius(this->radius);
 	this->shape.setOrigin(this->radius, this->radius);
@@ -52,6 +54,11 @@ void SpaceShip::update()
 		this->invisibleTime--;
 		if (this->invisibleTime <= 0) this->isInvisible = false;
 	}
+
+	if (this->powerupShootType > 0) {
+		this->powerupShootTime--;
+		if (this->powerupShootTime <= 0) this->powerupShootType = 0;
+	}
 }
 
 void SpaceShip::draw(sf::RenderWindow& window)
@@ -86,4 +93,6 @@ void SpaceShip::reset() {
 	this->position = { WINDOW_WIDTH * 0.5f, WINDOW_HEIGHT * 0.5f };
 	this->isInvisible = true;
 	this->invisibleTime = 1000;
+	this->powerupShootType = 0;
+	this->powerupShootTime = 0;
 }
