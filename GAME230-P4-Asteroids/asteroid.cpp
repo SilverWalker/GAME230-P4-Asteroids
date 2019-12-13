@@ -18,6 +18,7 @@ Asteroid::Asteroid(sf::Vector2f position, float speed, float angle, int sizeLeve
 
 	this->shape.setRadius(this->radius);
 	this->shape.setOrigin(this->radius, this->radius);
+	this->shape.setTexture(&asteroidTexture);
 }
 
 Asteroid::~Asteroid()
@@ -52,6 +53,7 @@ void Asteroid::update()
 void Asteroid::draw(sf::RenderWindow& window)
 {
 	this->shape.setPosition(this->position.x, this->position.y);
+	this->shape.setRotation(this->angle + 90 + frameCount*0.01);
 	this->shape.setFillColor(this->color);
 	window.draw(this->shape);
 }

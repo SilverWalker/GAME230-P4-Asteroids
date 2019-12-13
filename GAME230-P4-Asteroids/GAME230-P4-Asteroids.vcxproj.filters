@@ -84,5 +84,8 @@
     <Image Include="asset\texture\spaceShip.png">
       <Filter>Resource Files\asset\texture</Filter>
     </Image>
+    <Image Include="asset\texture\asteroid.png">
+      <Filter>Resource Files\asset\texture</Filter>
+    </Image>
   </ItemGroup>
 </Project>

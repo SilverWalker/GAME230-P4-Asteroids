@@ -58,11 +58,9 @@ void SpaceShip::draw(sf::RenderWindow& window)
 void SpaceShip::takeDamage()
 {
 	life--;
-	if (life > 0) {
-		this->reset();
-	}
-	else {
-		this->reset();
+	this->reset();
+	if (life <= 0) {
+		life = 0;
 		currentState = 3;
 	}
 }

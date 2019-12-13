@@ -171,6 +171,7 @@
     <Font Include="asset\font\JustMyType-KePl.ttf" />
   </ItemGroup>
   <ItemGroup>
+    <Image Include="asset\texture\asteroid.png" />
     <Image Include="asset\texture\spaceShip.png" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

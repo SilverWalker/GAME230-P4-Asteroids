@@ -73,7 +73,7 @@ int main()
 		}
 
 		if (sf::Mouse::isButtonPressed(sf::Mouse::Right) && currentState == 2) {
-			if (player->speed < 250.0f) {
+			if (player->speed < 500.0f) {
 				player->speed += 0.2f;
 			}
 		}

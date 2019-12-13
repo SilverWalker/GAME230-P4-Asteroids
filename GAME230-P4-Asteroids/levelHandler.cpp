@@ -20,6 +20,7 @@ LevelHandler::LevelHandler()
 
 void LevelHandler::update()
 {
+	frameCount++;
 	for (int i = 0; i < bullets.size(); i++) {
 		bullets.at(i)->update();
 		if (bullets.at(i)->life <= 0) {

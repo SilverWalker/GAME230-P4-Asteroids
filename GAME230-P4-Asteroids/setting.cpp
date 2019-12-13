@@ -20,9 +20,11 @@ std::vector<Bullet*> bullets;
 LevelHandler* levelHandler;
 
 sf::Texture spaceShipTexture;
+sf::Texture asteroidTexture;
 
 void loadAssets() {
 	spaceShipTexture.loadFromFile("asset/texture/spaceShip.png");
+	asteroidTexture.loadFromFile("asset/texture/asteroid.png");
 }
 
 void resetGame() {

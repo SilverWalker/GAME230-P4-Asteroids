@@ -30,6 +30,7 @@ extern std::vector<Bullet*> bullets;
 extern LevelHandler* levelHandler;
 
 extern sf::Texture spaceShipTexture;
+extern sf::Texture asteroidTexture;
 
 extern void loadAssets();
 extern void resetGame();

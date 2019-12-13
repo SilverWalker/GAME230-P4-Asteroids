@@ -11,7 +11,7 @@ Bullet::Bullet(sf::Vector2f position, float angle)
 	this->angle = angle;
 	this->radius = 5;
 	this->position = position;
-	this->color = sf::Color(0, 0, 255);
+	this->color = sf::Color(0, 255, 255);
 	this->life = 3000;
 	this->type = 2;
 	this->isDead = false;
