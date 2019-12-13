@@ -7,6 +7,8 @@
 class Bullet : public GameObject {
 public:
 	int life;
+	std::vector<sf::Vector2f> trails;
+	sf::CircleShape trailShape;
 
 	Bullet(sf::Vector2f position, float angle);
 	void update();

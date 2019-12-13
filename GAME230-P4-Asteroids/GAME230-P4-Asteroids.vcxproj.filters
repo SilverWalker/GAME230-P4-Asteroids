@@ -51,6 +51,12 @@
     <ClCompile Include="levelHandler.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="wave.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="particle.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Setting.h">
@@ -72,6 +78,12 @@
       <Filter>Source Files</Filter>
     </ClInclude>
     <ClInclude Include="LevelHandler.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Wave.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Particle.h">
       <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>

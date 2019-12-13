@@ -22,6 +22,9 @@ LevelHandler* levelHandler;
 sf::Texture spaceShipTexture;
 sf::Texture asteroidTexture;
 
+std::vector<Wave*> waves;
+std::vector<Particle*> particles;
+
 void loadAssets() {
 	spaceShipTexture.loadFromFile("asset/texture/spaceShip.png");
 	asteroidTexture.loadFromFile("asset/texture/asteroid.png");

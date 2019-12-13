@@ -154,18 +154,22 @@
     <ClCompile Include="gameObject.cpp" />
     <ClCompile Include="levelHandler.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="particle.cpp" />
     <ClCompile Include="setting.cpp" />
     <ClCompile Include="spaceShip.cpp" />
     <ClCompile Include="ui.cpp" />
+    <ClCompile Include="wave.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Asteroid.h" />
     <ClInclude Include="Bullet.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="LevelHandler.h" />
+    <ClInclude Include="Particle.h" />
     <ClInclude Include="Setting.h" />
     <ClInclude Include="SpaceShip.h" />
     <ClInclude Include="Ui.h" />
+    <ClInclude Include="Wave.h" />
   </ItemGroup>
   <ItemGroup>
     <Font Include="asset\font\JustMyType-KePl.ttf" />

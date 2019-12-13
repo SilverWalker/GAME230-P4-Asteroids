@@ -9,6 +9,8 @@
 #include "Asteroid.h"
 #include "Bullet.h"
 #include "LevelHandler.h"
+#include "Wave.h"
+#include "Particle.h"
 
 extern int WINDOW_WIDTH;
 extern int WINDOW_HEIGHT;
@@ -31,6 +33,9 @@ extern LevelHandler* levelHandler;
 
 extern sf::Texture spaceShipTexture;
 extern sf::Texture asteroidTexture;
+
+extern std::vector<Wave*> waves;
+extern std::vector<Particle*> particles;
 
 extern void loadAssets();
 extern void resetGame();

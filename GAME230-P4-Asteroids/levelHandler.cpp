@@ -28,9 +28,15 @@ void LevelHandler::update()
 			bullets.erase(bullets.begin() + i);
 		}
 	}
-	player->update();
 	for (int i = 0; i < asteroids.size(); i++) {
 		asteroids.at(i)->update();
+	}
+	player->update();
+	for (int i = 0; i < waves.size(); i++) {
+		waves.at(i)->update();
+	}
+	for (int i = 0; i < particles.size(); i++) {
+		particles.at(i)->update();
 	}
 	this->updateBuckets();
 
@@ -46,9 +52,15 @@ void LevelHandler::render(sf::RenderWindow& window)
 	for (int i = 0; i < bullets.size(); i++) {
 		bullets.at(i)->draw(window);
 	}
-	player->draw(window);
 	for (int i = 0; i < asteroids.size(); i++) {
 		asteroids.at(i)->draw(window);
+	}
+	for (int i = 0; i < particles.size(); i++) {
+		particles.at(i)->draw(window);
+	}
+	player->draw(window);
+	for (int i = 0; i < waves.size(); i++) {
+		waves.at(i)->draw(window);
 	}
 }
 
@@ -93,6 +105,18 @@ void LevelHandler::updateBuckets()
 		if (asteroids.at(i)->isDead) {
 			delete asteroids[i];
 			asteroids.erase(asteroids.begin() + i);
+		}
+	}
+	for (int i = 0; i < waves.size(); i++) {
+		if (waves.at(i)->isDead) {
+			delete waves[i];
+			waves.erase(waves.begin() + i);
+		}
+	}
+	for (int i = 0; i < particles.size(); i++) {
+		if (particles.at(i)->isDead) {
+			delete particles[i];
+			particles.erase(particles.begin() + i);
 		}
 	}
 }
@@ -151,12 +175,14 @@ void LevelHandler::detectCollisions(std::vector<GameObject*> bucket) {
 						obj1->angle = angle2;
 					}
 					if (obj2->type == 2) {
+						waves.push_back(new Wave(obj1->position.x, obj1->position.y, sf::Color::White));
 						bucket.at(i)->isDead = true;
 						bucket.at(j)->isDead = true;
 					}
 				}break;
 				case 2: {
 					if (obj2->type == 1) {
+						waves.push_back(new Wave(obj2->position.x, obj2->position.y, sf::Color::White));
 						bucket.at(i)->isDead = true;
 						bucket.at(j)->isDead = true;
 					}
