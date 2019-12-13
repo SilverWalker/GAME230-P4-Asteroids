@@ -75,7 +75,7 @@ int main()
 		}
 
 		if (sf::Mouse::isButtonPressed(sf::Mouse::Right) && currentState == 2) {
-			if (player->speed < 500.0f) {
+			if (player->speed < 500.5f) {
 				player->speed += 0.2f;
 				particles.push_back(new Particle(player->position, 300.0f, player->angle-180.0f + sin(frameCount)*20));
 			}
@@ -90,6 +90,7 @@ int main()
 		player->angle = mouseAngle;
 
 		window.clear();
+		ui.drawBackground(window);
 		switch (currentState) {
 			case 1: {
 				ui.drawMainMenu(window);

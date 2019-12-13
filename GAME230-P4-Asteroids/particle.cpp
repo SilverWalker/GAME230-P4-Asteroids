@@ -21,8 +21,7 @@ void Particle::update()
 	this->life--;
 	if (this->life <= 0) this->isDead = true;
 	this->color = sf::Color(255, this->life, 0);
-	//this->color.a = this->life + 100 > 255 ? 255 : this->life + 100;
-	int alpha = (player->speed / 2) - (200 - this->life)/2;
+	int alpha = (player->speed / 2) - (200 - this->life) / 2;
 	this->color.a = alpha > 255 ? 255 : alpha < 0 ? 0 : alpha;
 
 	this->speed*=1.01;

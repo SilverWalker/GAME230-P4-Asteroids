@@ -51,6 +51,12 @@ Ui::Ui()
 	this->scoreText.setFillColor(sf::Color::White);
 	this->scoreText.setPosition(sf::Vector2f(WINDOW_WIDTH * 0.1, WINDOW_HEIGHT * 0.01));
 
+	this->speedText.setFont(this->font);
+	this->speedText.setString("Speed: " + std::to_string(int(player->speed)));
+	this->speedText.setCharacterSize(WINDOW_WIDTH / 36);
+	this->speedText.setFillColor(sf::Color::White);
+	this->speedText.setPosition(sf::Vector2f(WINDOW_WIDTH * 0.3, WINDOW_HEIGHT * 0.01));
+
 	this->lifeText.setFont(this->font);
 	this->lifeText.setString("Life: " + std::to_string(life));
 	this->lifeText.setCharacterSize(WINDOW_WIDTH / 36);
@@ -85,11 +91,18 @@ Ui::Ui()
 	this->backToMenutBtn.setOutlineThickness(3);
 	this->backToMenutBtn.setOrigin(125, 25);
 	this->backToMenutBtn.setPosition(WINDOW_WIDTH * 0.5, WINDOW_HEIGHT * 0.68);
+
+	//Background
+	this->bgShape.setSize({ float(WINDOW_WIDTH), float(WINDOW_HEIGHT) });
+	this->bgShape.setFillColor(sf::Color(36, 20, 57));
+	this->bgShape.setOrigin( WINDOW_WIDTH * 0.5, WINDOW_HEIGHT * 0.5 );
+	this->bgShape.setPosition( WINDOW_WIDTH * 0.5, WINDOW_HEIGHT * 0.5 );
 }
 
 void Ui::update()
 {
 	this->scoreText.setString("Score: " + std::to_string(score));
+	if(frameCount%30==0) this->speedText.setString("Speed: " + std::to_string(int(player->speed)));
 	this->lifeText.setString("Life: " + std::to_string(life));
 	this->levelText.setString("Level: " + std::to_string(level));
 }
@@ -106,6 +119,7 @@ void Ui::drawMainMenu(sf::RenderWindow& window)
 void Ui::drawInGameInfo(sf::RenderWindow& window)
 {
 	window.draw(this->scoreText);
+	window.draw(this->speedText);
 	window.draw(this->lifeText);
 	window.draw(this->levelText);
 }
@@ -115,4 +129,9 @@ void Ui::drawGameOver(sf::RenderWindow& window)
 	window.draw(this->gameOverText);
 	window.draw(this->backToMenutBtn);
 	window.draw(this->backToMenuText);
+}
+
+void Ui::drawBackground(sf::RenderWindow& window)
+{
+	window.draw(this->bgShape);
 }

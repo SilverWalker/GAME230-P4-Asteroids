@@ -14,16 +14,20 @@ public:
 	sf::RectangleShape exitBtn;
 	//2: In game
 	sf::Text scoreText;
+	sf::Text speedText;
 	sf::Text lifeText;
 	sf::Text levelText;
 	//3: Game over
 	sf::Text gameOverText;
 	sf::Text backToMenuText;
 	sf::RectangleShape backToMenutBtn;
+	//Background
+	sf::RectangleShape bgShape;
 
 	Ui();
 	void update();
 	void drawMainMenu(sf::RenderWindow& window);
 	void drawInGameInfo(sf::RenderWindow& window);
 	void drawGameOver(sf::RenderWindow& window);
+	void drawBackground(sf::RenderWindow& window);
 };
