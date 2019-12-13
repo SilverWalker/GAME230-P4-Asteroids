@@ -6,6 +6,9 @@
 
 class SpaceShip : public GameObject {
 public:
+	bool isInvisible;
+	int invisibleTime;
+
 	SpaceShip(sf::Vector2f position, float speed, float angle, float radius);
 	void update();
 	void draw(sf::RenderWindow& window);
