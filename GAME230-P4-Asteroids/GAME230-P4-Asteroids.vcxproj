@@ -178,6 +178,13 @@
     <Image Include="asset\texture\asteroid.png" />
     <Image Include="asset\texture\spaceShip.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Media Include="asset\sound\destorySpaceShip.wav" />
+    <Media Include="asset\sound\destroyAsteroid.wav" />
+    <Media Include="asset\sound\nextLevel.wav" />
+    <Media Include="asset\sound\shoot.wav" />
+    <Media Include="asset\sound\thrust.wav" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

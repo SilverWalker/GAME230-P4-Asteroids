@@ -37,5 +37,17 @@ extern sf::Texture asteroidTexture;
 extern std::vector<Wave*> waves;
 extern std::vector<Particle*> particles;
 
+extern sf::SoundBuffer thrustBuffer;
+extern sf::SoundBuffer shootBuffer;
+extern sf::SoundBuffer nextLevelBuffer;
+extern sf::SoundBuffer destroyAsteroidBuffer;
+extern sf::SoundBuffer destroySpaceShipBuffer;
+extern sf::Sound thrustSound;
+extern sf::Sound ShootSound;
+extern sf::Sound stageSound;
+extern sf::Sound destroySound;
+
 extern void loadAssets();
 extern void resetGame();
+extern void playSound(int soundId);
+extern void stopSound(int soundId);

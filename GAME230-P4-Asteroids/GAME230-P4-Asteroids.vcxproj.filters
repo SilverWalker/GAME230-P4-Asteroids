@@ -100,4 +100,21 @@
       <Filter>Resource Files\asset\texture</Filter>
     </Image>
   </ItemGroup>
+  <ItemGroup>
+    <Media Include="asset\sound\thrust.wav">
+      <Filter>Resource Files\asset\sound</Filter>
+    </Media>
+    <Media Include="asset\sound\shoot.wav">
+      <Filter>Resource Files\asset\sound</Filter>
+    </Media>
+    <Media Include="asset\sound\destorySpaceShip.wav">
+      <Filter>Resource Files\asset\sound</Filter>
+    </Media>
+    <Media Include="asset\sound\destroyAsteroid.wav">
+      <Filter>Resource Files\asset\sound</Filter>
+    </Media>
+    <Media Include="asset\sound\nextLevel.wav">
+      <Filter>Resource Files\asset\sound</Filter>
+    </Media>
+  </ItemGroup>
 </Project>

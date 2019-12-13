@@ -6,8 +6,9 @@ Wave::Wave(float pX, float pY, sf::Color color)
 {
 	this->position.x = pX;
 	this->position.y = pY;
-	this->color = color;
 	this->life = 200;
+	this->color = color;
+	this->color.a = this->life * 0.75 + 105;
 	this->radius = (200.0f - this->life) / 4;
 	this->isDead = false;
 }
@@ -17,6 +18,7 @@ void Wave::update()
 	this->life--;
 	if (this->life <= 0) this->isDead = true;
 	this->radius = (200.0f - this->life) / 4;
+	this->color.a = this->life * 0.75 + 105;
 }
 
 void Wave::draw(sf::RenderWindow& window)

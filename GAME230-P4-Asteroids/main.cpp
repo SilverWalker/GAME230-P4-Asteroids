@@ -62,6 +62,7 @@ int main()
 				case 2: {
 					if (sf::Mouse::isButtonPressed(sf::Mouse::Left) && bullets.size() < 5) {
 						bullets.push_back(new Bullet({ player->position.x, player->position.y }, player->angle));
+						playSound(1);
 					}
 				}break;
 				case 3: {
@@ -72,13 +73,17 @@ int main()
 				}break;
 				}
 			}
+			if (event.type == sf::Event::EventType::MouseButtonReleased) {
+				if (event.mouseButton.button == sf::Mouse::Right) stopSound(0);
+			}
 		}
 
 		if (sf::Mouse::isButtonPressed(sf::Mouse::Right) && currentState == 2) {
 			if (player->speed < 500.5f) {
-				player->speed += 0.2f;
-				particles.push_back(new Particle(player->position, 300.0f, player->angle-180.0f + sin(frameCount)*20));
+				player->speed += 0.1f * (6 - int(player->speed / 100));
 			}
+			if (frameCount % 60 == 0) playSound(0);
+			particles.push_back(new Particle(player->position, 300.0f, player->angle - 180.0f + sin(frameCount) * 20));
 		}
 
 		sf::Vector2i mousePos = sf::Mouse::getPosition(window);

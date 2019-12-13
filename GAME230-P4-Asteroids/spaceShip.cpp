@@ -58,6 +58,10 @@ void SpaceShip::draw(sf::RenderWindow& window)
 void SpaceShip::takeDamage()
 {
 	life--;
+	playSound(4);
+	for (int i = 0; i < 10; i++) {
+		waves.push_back(new Wave(player->position.x + rand()%100-50,player->position.y + rand() % 100 - 50, sf::Color::White));
+	}
 	this->reset();
 	if (life <= 0) {
 		life = 0;

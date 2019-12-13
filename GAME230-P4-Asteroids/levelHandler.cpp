@@ -42,6 +42,7 @@ void LevelHandler::update()
 
 	if (asteroids.size() <= 0) {
 		level++;
+		playSound(2);
 		player->reset();
 		this->buildLevel(level);
 	}
@@ -68,9 +69,11 @@ void LevelHandler::buildLevel(int level)
 {
 	asteroids.clear();
 	bullets.clear();
+	waves.clear();
+	particles.clear();
 	player->reset();
 	for (int i = 0; i < level+2; i++) {
-		asteroids.push_back(new Asteroid({ WINDOW_WIDTH * (i + 3) * 0.1f, WINDOW_HEIGHT * 0.8f }, rand() % 100 + 100.0f * level, rand() % 360 - 180.0f, 2));
+		asteroids.push_back(new Asteroid({ WINDOW_WIDTH * (i + 3) * 0.1f, WINDOW_HEIGHT * 0.8f }, rand() % 100 + 50.0f * level, rand() % 360 - 180.0f, 2));
 	}
 }
 
@@ -175,14 +178,16 @@ void LevelHandler::detectCollisions(std::vector<GameObject*> bucket) {
 						obj1->angle = angle2;
 					}
 					if (obj2->type == 2) {
-						waves.push_back(new Wave(obj1->position.x, obj1->position.y, sf::Color::White));
+						waves.push_back(new Wave(obj1->position.x, obj1->position.y, obj2->color));
+						playSound(3);
 						bucket.at(i)->isDead = true;
 						bucket.at(j)->isDead = true;
 					}
 				}break;
 				case 2: {
 					if (obj2->type == 1) {
-						waves.push_back(new Wave(obj2->position.x, obj2->position.y, sf::Color::White));
+						waves.push_back(new Wave(obj2->position.x, obj2->position.y, obj1->color));
+						playSound(3);
 						bucket.at(i)->isDead = true;
 						bucket.at(j)->isDead = true;
 					}
