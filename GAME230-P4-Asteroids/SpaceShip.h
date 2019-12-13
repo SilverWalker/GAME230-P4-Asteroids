@@ -9,4 +9,6 @@ public:
 	SpaceShip(sf::Vector2f position, float speed, float angle, float radius);
 	void update();
 	void draw(sf::RenderWindow& window);
+	void takeDamage();
+	void reset();
 };

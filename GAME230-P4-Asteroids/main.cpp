@@ -48,6 +48,7 @@ int main()
 				case 1: {
 					if (mousePos.x > WINDOW_WIDTH * 0.5 - 100 && mousePos.x < WINDOW_WIDTH * 0.5 + 100
 					&& mousePos.y> WINDOW_HEIGHT * 0.68 - 25 && mousePos.y < WINDOW_HEIGHT * 0.68 + 25) {
+						resetGame();
 						levelHandler->buildLevel(1);
 						currentState = 2;
 					}
@@ -72,14 +73,18 @@ int main()
 		}
 
 		if (sf::Mouse::isButtonPressed(sf::Mouse::Right) && currentState == 2) {
-			sf::Vector2i mousePos = sf::Mouse::getPosition(window);
-			float mouseAngle = atan2(mousePos.y - player->position.y, mousePos.x - player->position.x) * 180 / 3.14f;
-			float mouseDistance = sqrt(pow(mousePos.x - player->position.x, 2) + pow(mousePos.y - player->position.y, 2));
-			player->angle = mouseAngle;
-			if (player->speed < 300.0f) {
-				player->speed += 0.05f;
+			if (player->speed < 250.0f) {
+				player->speed += 0.2f;
 			}
 		}
+
+		sf::Vector2i mousePos = sf::Mouse::getPosition(window);
+		float mouseDistance = sqrt(pow(mousePos.x - player->position.x, 2) + pow(mousePos.y - player->position.y, 2));
+		if (mouseDistance < 10.0f) {
+			player->speed -= 10.0f - mouseDistance;
+		}
+		float mouseAngle = atan2(mousePos.y - player->position.y, mousePos.x - player->position.x) * 180 / 3.14f;
+		player->angle = mouseAngle;
 
 		window.clear();
 		switch (currentState) {
@@ -89,6 +94,7 @@ int main()
 			case 2: {
 				levelHandler->update();
 				levelHandler->render(window);
+				ui.update();
 				ui.drawInGameInfo(window);
 			}break;
 			case 3: {

@@ -31,7 +31,13 @@ void LevelHandler::update()
 	for (int i = 0; i < asteroids.size(); i++) {
 		asteroids.at(i)->update();
 	}
-	this->checkCollision();
+	this->updateBuckets();
+
+	if (asteroids.size() <= 0) {
+		level++;
+		player->reset();
+		this->buildLevel(level);
+	}
 }
 
 void LevelHandler::render(sf::RenderWindow& window)
@@ -47,14 +53,21 @@ void LevelHandler::render(sf::RenderWindow& window)
 
 void LevelHandler::buildLevel(int level)
 {
+	asteroids.clear();
+	bullets.clear();
+	player->reset();
 	for (int i = 0; i < level+2; i++) {
-		asteroids.push_back(new Asteroid({ WINDOW_WIDTH * (i + 3) * 0.1f, WINDOW_HEIGHT * (i+3)*0.1f }, rand() % 20 + 20.0f, rand() % 360 - 180.0f, i % 3));
+		asteroids.push_back(new Asteroid({ WINDOW_WIDTH * (i + 3) * 0.1f, WINDOW_HEIGHT * 0.8f }, rand() % 100 + 100.0f * level, rand() % 360 - 180.0f, 2));
 	}
 }
 
-void LevelHandler::checkCollision()
+void LevelHandler::updateBuckets()
 {
-	this->clearBucket();
+	//Clear buckets
+	for (int i = 0; i < this->COLUMNS * this->ROWS; i++) {
+		this->gridBuckets.at(i).clear();
+	}
+	//Add game objects to buckets
 	for (int i = 0; i < bullets.size(); i++) {
 		addToBuckets(bullets.at(i));
 	}
@@ -62,12 +75,24 @@ void LevelHandler::checkCollision()
 		addToBuckets(asteroids.at(i));
 	}
 	this->addToBuckets(player);
-}
-
-void LevelHandler::clearBucket()
-{
-	for (int i = 0; i < this->COLUMNS * this->ROWS; i++) {
-		this->gridBuckets.at(i).clear();
+	//Detect collisions in each bucket
+	for (int i = 0; i < gridBuckets.size(); i++) {
+		if (gridBuckets[i].size() > 1) {
+			detectCollisions(gridBuckets[i]);
+		}
+	}
+	//Remove dead game object
+	for (int i = 0; i < bullets.size(); i++) {
+		if (bullets.at(i)->isDead) {
+			delete bullets[i];
+			bullets.erase(bullets.begin() + i);
+		}
+	}
+	for (int i = 0; i < asteroids.size(); i++) {
+		if (asteroids.at(i)->isDead) {
+			delete asteroids[i];
+			asteroids.erase(asteroids.begin() + i);
+		}
 	}
 }
 
@@ -84,11 +109,6 @@ void LevelHandler::addToBuckets(GameObject* obj)
 	for (int i = 0; i < atBuckets.size(); i++) {
 		gridBuckets[atBuckets.at(i)].push_back(obj);
 	}
-	for (int i = 0; i < gridBuckets.size(); i++) {
-		std::cout << i << ": ";
-		std::cout << gridBuckets.at(i).size() << " ";
-	}
-	std::cout << std::endl;
 }
 
 int LevelHandler::getGrid(sf::Vector2f pos)
@@ -101,4 +121,47 @@ int LevelHandler::getGrid(sf::Vector2f pos)
 	if (row >= this->ROWS) row = this->ROWS - 1;
 
 	return row * this->COLUMNS + col;
+}
+
+void LevelHandler::detectCollisions(std::vector<GameObject*> bucket) {
+	for (int i = 0; i < bucket.size()-1; i++) {
+		for (int j = i + 1; j < bucket.size(); j++) {
+			GameObject* obj1 = bucket.at(i);
+			GameObject* obj2 = bucket.at(j);
+
+			sf::Vector2f distanceVector = obj2->position - obj1->position;
+			float distance = sqrt(pow(distanceVector.x, 2) + pow(distanceVector.y, 2));
+			float radiusSum = obj1->radius + obj2->radius;
+			if (distance <= radiusSum) {
+				switch (obj1->type) {
+				case 0: {
+					if (obj2->type == 1) {
+						player->takeDamage();
+					}
+				}break;
+				case 1: {
+					if (obj2->type == 0) {
+						player->takeDamage();
+					}
+					if (obj2->type == 1) {
+						float angle1 = atan2(distanceVector.y, distanceVector.x) * 180 / 3.14f;
+						float angle2 = atan2(-distanceVector.y, -distanceVector.x) * 180 / 3.14f;
+						obj2->angle = angle1;
+						obj1->angle = angle2;
+					}
+					if (obj2->type == 2) {
+						bucket.at(i)->isDead = true;
+						bucket.at(j)->isDead = true;
+					}
+				}break;
+				case 2: {
+					if (obj2->type == 1) {
+						bucket.at(i)->isDead = true;
+						bucket.at(j)->isDead = true;
+					}
+				}break;
+				}
+			}
+		}
+	}
 }

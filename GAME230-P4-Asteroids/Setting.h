@@ -16,7 +16,6 @@ extern int WINDOW_HEIGHT;
 extern int currentState;
 extern int score;
 extern int life;
-extern bool isGameOver;
 extern int level;
 
 extern sf::Clock deltaClock;

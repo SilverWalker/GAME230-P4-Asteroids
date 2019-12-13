@@ -12,6 +12,8 @@ SpaceShip::SpaceShip(sf::Vector2f position, float speed, float angle, float radi
 	this->radius = radius;
 	this->position = position;
 	this->color = sf::Color(255, 255, 255);
+	this->type = 0;
+	this->isDead = false;
 
 	this->shape.setRadius(this->radius);
 	this->shape.setOrigin(this->radius, this->radius);
@@ -20,16 +22,17 @@ SpaceShip::SpaceShip(sf::Vector2f position, float speed, float angle, float radi
 
 void SpaceShip::update()
 {
-	this->velocity.x = this->speed * cosf(this->angle * 3.14f / 180);
-	this->velocity.y = this->speed * sinf(this->angle * 3.14f / 180);
-	this->position.x += this->velocity.x * dt.asSeconds();
-	this->position.y += this->velocity.y * dt.asSeconds();
 	if (this->speed > 0) {
-		this->speed -= 0.02f;
+		this->speed -= 0.10f;
 	}
 	else {
 		this->speed = 0;
 	}
+	this->velocity.x = this->speed * cosf(this->angle * 3.14f / 180);
+	this->velocity.y = this->speed * sinf(this->angle * 3.14f / 180);
+	this->position.x += this->velocity.x * dt.asSeconds();
+	this->position.y += this->velocity.y * dt.asSeconds();
+
 	if (this->position.x < -this->radius) {
 		this->position.x = WINDOW_WIDTH + this->radius;
 	}
@@ -50,4 +53,22 @@ void SpaceShip::draw(sf::RenderWindow& window)
 	this->shape.setRotation(this->angle+90);
 	this->shape.setFillColor(this->color);
 	window.draw(this->shape);
+}
+
+void SpaceShip::takeDamage()
+{
+	life--;
+	if (life > 0) {
+		this->reset();
+	}
+	else {
+		this->reset();
+		currentState = 3;
+	}
+}
+
+void SpaceShip::reset() {
+	this->speed = 0.0f;
+	this->angle = -90.0f;
+	this->position = { WINDOW_WIDTH * 0.5f, WINDOW_HEIGHT * 0.5f };
 }

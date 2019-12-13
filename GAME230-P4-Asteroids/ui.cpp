@@ -89,6 +89,9 @@ Ui::Ui()
 
 void Ui::update()
 {
+	this->scoreText.setString("Score: " + std::to_string(score));
+	this->lifeText.setString("Life: " + std::to_string(life));
+	this->levelText.setString("Level: " + std::to_string(level));
 }
 
 void Ui::drawMainMenu(sf::RenderWindow& window)

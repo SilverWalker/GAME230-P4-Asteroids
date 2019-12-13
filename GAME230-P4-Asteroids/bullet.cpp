@@ -7,12 +7,14 @@
 
 Bullet::Bullet(sf::Vector2f position, float angle)
 {
-	this->speed = 200.0f;
+	this->speed = 500.0f;
 	this->angle = angle;
 	this->radius = 5;
 	this->position = position;
-	this->color = sf::Color(255, 255, 0);
+	this->color = sf::Color(0, 0, 255);
 	this->life = 3000;
+	this->type = 2;
+	this->isDead = false;
 
 	this->shape.setRadius(this->radius);
 	this->shape.setOrigin(this->radius, this->radius);

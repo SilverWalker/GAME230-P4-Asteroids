@@ -16,8 +16,8 @@ public:
 	void update();
 	void render(sf::RenderWindow& window);
 	void buildLevel(int level);
-	void checkCollision();
-	void clearBucket();
+	void updateBuckets();
 	void addToBuckets(GameObject* obj);
 	int getGrid(sf::Vector2f pos);
+	void detectCollisions(std::vector<GameObject*> bucket);
 };

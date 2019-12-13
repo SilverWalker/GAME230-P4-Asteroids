@@ -9,6 +9,7 @@ public:
 	int sizeLevel; //0: Small, 1: Medium, 2: Large
 
 	Asteroid(sf::Vector2f position, float speed, float angle, int sizeLevel);
+	~Asteroid();
 	void update();
 	void draw(sf::RenderWindow& window);
 };

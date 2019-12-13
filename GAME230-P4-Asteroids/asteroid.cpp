@@ -13,9 +13,20 @@ Asteroid::Asteroid(sf::Vector2f position, float speed, float angle, int sizeLeve
 	this->radius = asteroidSizes[sizeLevel];
 	this->position = position;
 	this->color = sf::Color(255, 255, 0);
+	this->type = 1;
+	this->isDead = false;
 
 	this->shape.setRadius(this->radius);
 	this->shape.setOrigin(this->radius, this->radius);
+}
+
+Asteroid::~Asteroid()
+{
+	score += 40 + 10 * level;
+	if (this->sizeLevel > 0) {
+		asteroids.push_back(new Asteroid(this->position, rand() % 100 + 100.0f * level, this->angle - 90, this->sizeLevel - 1));
+		asteroids.push_back(new Asteroid(this->position, rand() % 100 + 100.0f * level, this->angle + 90, this->sizeLevel - 1));
+	}
 }
 
 void Asteroid::update()
