@@ -73,7 +73,11 @@ void LevelHandler::buildLevel(int level)
 	particles.clear();
 	player->reset();
 	for (int i = 0; i < level+2; i++) {
-		asteroids.push_back(new Asteroid({ WINDOW_WIDTH * (i + 3) * 0.1f, WINDOW_HEIGHT * 0.8f }, rand() % 100 + 50.0f * level, rand() % 360 - 180.0f, 2));
+		int distance = rand() % 400 + 100;
+		float angle = (i * 360 / (level + 2));
+		float posX = WINDOW_WIDTH / 2 + distance * cosf(angle * 3.14f / 180);
+		float posY = WINDOW_HEIGHT / 2 + distance * sinf(angle * 3.14f / 180);
+		asteroids.push_back(new Asteroid({ posX, posY }, rand() % 100 + 50.0f * level, rand() % 360 - 180.0f, 2));
 	}
 }
 
